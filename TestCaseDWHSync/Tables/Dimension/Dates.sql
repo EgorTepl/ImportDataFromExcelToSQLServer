@@ -1,0 +1,9 @@
+﻿CREATE TABLE [Dimension].[Dates]
+(
+	[Id] INT NOT NULL,
+	DateSQL Date NOT NULL,
+	Month TINYINT NOT NULL,
+	Year SMALLINT NOT NULL
+	CONSTRAINT [PK_Dimension_Dates_Id] PRIMARY KEY CLUSTERED (Id)
+	CONSTRAINT [UQ_Dimension_Dates_DateSQL] UNIQUE (DateSQL)
+)

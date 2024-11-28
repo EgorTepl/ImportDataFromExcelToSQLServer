@@ -1,0 +1,3 @@
+﻿CREATE SCHEMA [Excel]
+    AUTHORIZATION [dbo];
+

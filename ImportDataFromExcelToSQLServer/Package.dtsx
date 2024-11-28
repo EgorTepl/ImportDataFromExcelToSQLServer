@@ -1,0 +1,768 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="11/23/2024 10:42:49 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="DESKTOP-J1DS29G"
+  DTS:CreatorName="DESKTOP-J1DS29G\Acer"
+  DTS:DTSID="{893F543B-BDD7-43F8-A258-981169B9A70B}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.0"
+  DTS:LocaleID="1049"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="27"
+  DTS:VersionGUID="{EB84C568-143A-46D6-9276-3F903EEF89D6}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[(local).TestCaseDWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{BC23694D-85ED-4718-A218-0BC212368CBD}"
+      DTS:ObjectName="(local).TestCaseDWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=(local);Initial Catalog=TestCaseDWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package-{BC23694D-85ED-4718-A218-0BC212368CBD}(local).TestCaseDWH;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DTSID="{A3791529-504B-44E4-B000-C8F746B64198}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="0"
+          DTS:ConnectRetryInterval="0"
+          DTS:ConnectionString="Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\Пользователи\Acer\Desktop\Test Case DWH.xlsx;Extended Properties=&quot;EXCEL 12.0 XML;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Load data from Excel to TestCaseDWH database"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Задача потока данных"
+      DTS:DTSID="{F43FCACA-362D-4DC6-BF6E-FEB9979BE48A}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Load data from Excel to TestCaseDWH database"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Load data from Excel to TestCaseDWH database\MS Excel"
+              componentClassID="Microsoft.ExcelSource"
+              contactInfo="Источник &quot;Excel&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;1"
+              description="Источник &quot;Excel&quot;"
+              name="MS Excel"
+              usesDispositions="true"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">RES$_xlnm#_FilterDatabase</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.String"
+                  description="Переменная, содержащая команду SQL для выполнения."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="Сопоставление между параметрами в команде SQL и переменными."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                  connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;]"
+                  name="Выход источника &quot;Excel&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[FDate]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[FDate]"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[FDate]"
+                      name="FDate"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Month]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Month]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Month]"
+                      name="Month"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Year]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Year]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Year]"
+                      name="Year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[id_Client]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[id_Client]"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[id_Client]"
+                      name="id_Client"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Client]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Client]"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Client]"
+                      name="Client"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[id_Distributor]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[id_Distributor]"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[id_Distributor]"
+                      name="id_Distributor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Distributor]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[ Distributor]"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Distributor]"
+                      name="Distributor"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[id_Product]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[id_Product]"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[id_Product]"
+                      name="id_Product"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Product]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Product]"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Product]"
+                      name="Product"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Brand]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Brand]"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Brand]"
+                      name="Brand"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[SalesType]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[SalesType]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[SalesType]"
+                      name="SalesType"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[QTY]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Преобразование"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[QTY]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[QTY]"
+                      name="QTY"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[FDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="FDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Month]"
+                      dataType="r8"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Year]"
+                      dataType="r8"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[id_Client]"
+                      dataType="wstr"
+                      length="255"
+                      name="id_Client" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Client]"
+                      dataType="wstr"
+                      length="255"
+                      name="Client" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[id_Distributor]"
+                      dataType="wstr"
+                      length="255"
+                      name="id_Distributor" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[ Distributor]"
+                      dataType="wstr"
+                      length="255"
+                      name=" Distributor" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[id_Product]"
+                      dataType="wstr"
+                      length="255"
+                      name="id_Product" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Product]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[Brand]"
+                      dataType="wstr"
+                      length="255"
+                      name="Brand" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[SalesType]"
+                      dataType="r8"
+                      name="SalesType" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].ExternalColumns[QTY]"
+                      dataType="r8"
+                      name="QTY" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;]"
+                  isErrorOut="true"
+                  name="Вывод ошибок источника &quot;Excel&quot;">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[FDate]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[FDate]"
+                      name="FDate" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Month]"
+                      dataType="r8"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Month]"
+                      name="Month" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Year]"
+                      dataType="r8"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Year]"
+                      name="Year" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[id_Client]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[id_Client]"
+                      name="id_Client" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Client]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Client]"
+                      name="Client" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[id_Distributor]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[id_Distributor]"
+                      name="id_Distributor" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ Distributor]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ Distributor]"
+                      name=" Distributor" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[id_Product]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[id_Product]"
+                      name="id_Product" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Product]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Product]"
+                      name="Product" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Brand]"
+                      dataType="wstr"
+                      length="255"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[Brand]"
+                      name="Brand" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[SalesType]"
+                      dataType="r8"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[SalesType]"
+                      name="SalesType" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[QTY]"
+                      dataType="r8"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[QTY]"
+                      name="QTY" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Вывод ошибок источника &quot;Excel&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Назначение &quot;OLE DB&quot;;Корпорация Майкрософт. Microsoft SQL Server. (C) Корпорация Майкрософт (Microsoft Corporation). Все права защищены. http://www.microsoft.com/sql/support;4"
+              description="Назначение &quot;OLE DB&quot;"
+              name="TestCaseDWH Database"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Время ожидания команды, в секундах. Величина 0 означает неограниченное время ожидания."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowset">[excel].[Ref]</property>
+                <property
+                  dataType="System.String"
+                  description="Указывает переменную, содержащую имя объекта базы данных, используемого для открытия набора строк."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Команда SQL для выполнения."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает кодовую страницу столбца, используемую, когда недоступны сведения о кодовой странице из источника данных."
+                  name="DefaultCodePage">1251</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Вызывает безусловное использование значение свойства DefaultCodePage при описании символьных данных."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Указывает используемый режим доступа к базе данных."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, должны ли значения в столбцах идентификаторов копироваться в назначение. Если свойство имеет значение false, значения в столбцах идентификаторов будут созданы автоматически в месте назначения. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Указывает, будут ли в назначение вставляться значения NULL для столбцов, содержащих их. Значение false показывает, что если столбец имеет значение NULL, то в назначение будет вставлено его значение по умолчанию. Применяется только в случае, если включена быстрая загрузка."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Задает параметры быстрой загрузки. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Задает, когда выдаются сообщения о фиксации транзакции в ходе вставки данных. Значение 0 задает, что по окончании вставки данных будет выдано одно сообщение о фиксации транзакции. Применяется только в том случае, если включена быстрая загрузка."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[(local).TestCaseDWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[(local).TestCaseDWH]"
+                  description="Соединение OLE DB среды выполнения, используемое для доступа к базе данных."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;]"
+                  errorOrTruncationOperation="Вставить"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Вход назначения &quot;OLE DB&quot;">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[FDate]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="FDate"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[FDate]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[FDate]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Month]"
+                      cachedDataType="r8"
+                      cachedName="Month"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Month]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Month]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Year]"
+                      cachedDataType="r8"
+                      cachedName="Year"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Year]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Year]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[id_Client]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="id_Client"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[id_Client]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[id_Client]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Client]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Client"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Client]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Client]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[id_Distributor]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="id_Distributor"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[id_Distributor]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[id_Distributor]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Distributor]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Distributor"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Distributor]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Distributor]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[id_Product]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="id_Product"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[id_Product]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[id_Product]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Product]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Product"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Product]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Product]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[Brand]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="Brand"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Brand]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[Brand]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[SalesType]"
+                      cachedDataType="r8"
+                      cachedName="SalesType"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[SalesType]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[SalesType]" />
+                    <inputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].Columns[QTY]"
+                      cachedDataType="r8"
+                      cachedName="QTY"
+                      externalMetadataColumnId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[QTY]"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;].Columns[QTY]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[FDate]"
+                      dataType="wstr"
+                      length="255"
+                      name="FDate" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Month]"
+                      dataType="ui1"
+                      name="Month" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Year]"
+                      dataType="i2"
+                      name="Year" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[id_Client]"
+                      dataType="wstr"
+                      length="255"
+                      name="id_Client" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Client]"
+                      dataType="wstr"
+                      length="255"
+                      name="Client" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[id_Distributor]"
+                      dataType="wstr"
+                      length="255"
+                      name="id_Distributor" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Distributor]"
+                      dataType="wstr"
+                      length="255"
+                      name="Distributor" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[id_Product]"
+                      dataType="wstr"
+                      length="255"
+                      name="id_Product" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Product]"
+                      dataType="wstr"
+                      length="255"
+                      name="Product" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[Brand]"
+                      dataType="wstr"
+                      length="255"
+                      name="Brand" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[SalesType]"
+                      dataType="ui1"
+                      name="SalesType" />
+                    <externalMetadataColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;].ExternalColumns[QTY]"
+                      dataType="i4"
+                      name="QTY" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Вывод ошибок назначения &quot;OLE DB&quot;"
+                  synchronousInputId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Outputs[Вывод ошибок назначения &quot;OLE DB&quot;].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Load data from Excel to TestCaseDWH database.Paths[Выход источника &quot;Excel&quot;]"
+              endId="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database.Inputs[Вход назначения &quot;OLE DB&quot;]"
+              name="Выход источника &quot;Excel&quot;"
+              startId="Package\Load data from Excel to TestCaseDWH database\MS Excel.Outputs[Выход источника &quot;Excel&quot;]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Ref Table"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B8E3BDC3-E5D7-41A8-8C20-CC2FF6F6A5BB}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Ref Table"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{BC23694D-85ED-4718-A218-0BC212368CBD}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE excel.Ref" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{ABDCB912-64CD-4EAD-BBCA-CD98EE958C55}"
+      DTS:From="Package\Truncate Ref Table"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Load data from Excel to TestCaseDWH database" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="307,42"
+          Id="Package\Load data from Excel to TestCaseDWH database"
+          TopLeft="424,332" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\Truncate Ref Table"
+          TopLeft="496,244" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="579,286">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,46"
+              Start="0,0"
+              End="0,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Load data from Excel to TestCaseDWH database">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="121,42"
+          Id="Package\Load data from Excel to TestCaseDWH database\MS Excel"
+          TopLeft="407,114" />
+        <NodeLayout
+          Size="193,42"
+          Id="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database"
+          TopLeft="378,247" />
+        <EdgeLayout
+          Id="Package\Load data from Excel to TestCaseDWH database.Paths[Выход источника &quot;Excel&quot;]"
+          TopLeft="471,156">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,91"
+              Start="0,0"
+              End="0,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load data from Excel to TestCaseDWH database\MS Excel">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Load data from Excel to TestCaseDWH database\TestCaseDWH Database">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

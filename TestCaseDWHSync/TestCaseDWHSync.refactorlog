@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Move Schema" Key="12fb97ab-c581-4c2b-83d8-a90e1326d4df" ChangeDateTime="11/24/2024 20:24:29">
+    <Property Name="ElementName" Value="[Staging].[Ref]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="Fact" />
+    <Property Name="IsNewSchemaExternal" Value="False" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="801e8913-04a9-4152-a1b3-1814e728cd0e" ChangeDateTime="11/24/2024 21:29:04">
+    <Property Name="ElementName" Value="[Staging].[SyncDistributor]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="ParentElementName" Value="[Staging]" />
+    <Property Name="ParentElementType" Value="SqlSchema" />
+    <Property Name="NewName" Value="[SyncDistributors]" />
+  </Operation>
+  <Operation Name="Move Schema" Key="620477ac-eec1-48a8-9fbe-6bc994034f7b" ChangeDateTime="11/27/2024 15:44:20">
+    <Property Name="ElementName" Value="[Staging].[Clients]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="5d33147a-5b93-4553-896b-f71d91ec6c3d" ChangeDateTime="11/27/2024 15:44:33">
+    <Property Name="ElementName" Value="[Staging].[Distributors]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="5034fe76-76f2-4fe1-9cef-5fd26a90799f" ChangeDateTime="11/27/2024 15:44:50">
+    <Property Name="ElementName" Value="[Staging].[Products]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="68abfeec-c2ce-4497-8e94-000b342da189" ChangeDateTime="11/27/2024 15:45:22">
+    <Property Name="ElementName" Value="[Fact].[Ref]" />
+    <Property Name="ElementType" Value="SqlTable" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="76807fef-32c8-4805-a5ba-8186ac5b79ad" ChangeDateTime="11/27/2024 15:45:53">
+    <Property Name="ElementName" Value="[Staging].[SyncClients]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="1948c012-5ae1-43d1-849a-18b3a2e032b9" ChangeDateTime="11/27/2024 15:46:03">
+    <Property Name="ElementName" Value="[Staging].[SyncDistributors]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+  <Operation Name="Move Schema" Key="8fbf5a7f-fdfc-42af-8402-38f1d3deab33" ChangeDateTime="11/27/2024 15:46:13">
+    <Property Name="ElementName" Value="[Staging].[SyncProducts]" />
+    <Property Name="ElementType" Value="SqlProcedure" />
+    <Property Name="NewSchema" Value="dbo" />
+    <Property Name="IsNewSchemaExternal" Value="True" />
+  </Operation>
+</Operations>
